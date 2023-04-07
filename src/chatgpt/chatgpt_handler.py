@@ -40,7 +40,9 @@ class ChatGPTHandler:
 
         result = None
         try:
-            completion = openai.ChatCompletion.create(model=self.MODEL, messages=message)
+            completion = openai.ChatCompletion.create(
+                model=self.MODEL, messages=message
+            )  # type: ignore[no-untyped-call]
             result = completion.choices[0].message.content
         except AuthenticationError as ex:
             logger.error("Authentication error: %s", ex)
